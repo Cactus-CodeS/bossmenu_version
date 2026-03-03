@@ -1,25 +1,29 @@
-1.0.0 - 2025-12-23
+2.0.0 - 2026-03-03
 ------------------
-  + Initial Release - Complete Boss Menu for VORP
-  + Multi-language support (EN/FR/TH)
-  + Modern NUI interface with responsive design
-  + Employee management (hire/fire/promote/demote)
-  + Grade system with customizable permissions
-  + Salary system with configurable intervals
-  + Company bank accounts (money & gold)
-  + Transaction history with filtering
-  + Discord webhook integration for logging
-  + Company storage/stash system (VORP Inventory)
-  + Slot purchase system with tiers
-  + Duty system (on/off duty toggle)
-  + Job offer popup system
-  + Bonus system for employees
-  + Avatar customization per employee
-  + Rate limiting & anti-cheat security
-  + Timezone configuration for international servers
-  + Grade caching system for performance
-  + Server exports for external scripts
-  + Admin commands (/syncgrades, /fixgrades, etc.)
-  + Configurable notification system (NUI/VORP)
-  + Last login tracking for employees
-  ! Requires: oxmysql, vorp_core, vorp_inventory
+  + Multi-Framework Support (VORP Core + RSG-Core)
+  + Auto-detection bridge — detects framework at startup
+  + Bridge abstraction layer (bridge/loader.lua, bridge/rsg/, bridge/vorp/)
+  + All server/client calls go through Bridge.* API
+  + Automatic job registration for RSG-Core (sync_jobs.lua)
+  + Jobs from config.lua auto-synced to RSG-Core shared jobs at startup
+  + /syncjobs command — manually re-sync all jobs to framework
+  + /listjobs command — view all registered jobs in console
+  + Server exports: SyncJobsViaExports(), JobExistsInCore()
+  + Install helpers for RSG-Core (install/forBossmenu.lua, install/forMultijob.lua)
+  + RSG-Core compatible notification system
+  + RSG-Core compatible inventory integration
+  + RSG-Core compatible paycheck system
+  + Interaction modes: prompt, ox_target, pc_interaction
+  + Notification modes: auto, rsg, vorp, redem, bln, nui
+  * Avatar system now uses synchronous saves (no more race conditions)
+  * Avatar no longer appears blank after saving
+  * Affected rows validation on avatar save with error feedback
+  * Permission checks are now type-safe (R() helper)
+  * Configs using true/false instead of grade numbers no longer crash
+  * ResolvePermValue() handles boolean-to-number conversion
+  * All permission comparisons safe across sync_grades, grades, accounts, interaction
+  * Improved SQL query performance
+  * Updated fxmanifest.lua structure for bridge system
+  * ~5000 lines of code (up from ~4500)
+  ! Requires: oxmysql + (vorp_core OR rsg-core)
+  ! ⚠️ Complete file replacement required — partial update will crash
